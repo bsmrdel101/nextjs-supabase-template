@@ -6,37 +6,28 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 
-export default function Login() {
-  const [email, setEmail] = useState('');
+export default function ChangePassword() {
   const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    if (error) {
-      return console.error(error);
+    if (password !== password2) {
+      alert('Passwords do not match');
+      return;
     }
+    const { error } = await supabase.auth.updateUser({ password: password });
+    if (error) return console.error(error);
     location.replace('/');
   };
 
 
   return (
-    <Layout title="Login">
+    <Layout title="Change Password">
       <div className="login">
-        <h1>Login</h1>
+        <h1>Change Password</h1>
 
         <form onSubmit={(e) => handleSubmit(e)}>
-          <Input
-            variant={['label-stack']}
-            label="Email"
-            type="email"
-            value={email}
-            onChange={(e: any) => setEmail(e.target.value)}
-            required
-          />
           <Input
             variant={['label-stack']}
             label="Password"
@@ -45,12 +36,19 @@ export default function Login() {
             onChange={(e: any) => setPassword(e.target.value)}
             required
           />
+          <Input
+            variant={['label-stack']}
+            label="Confirm Password"
+            type="password"
+            value={password2}
+            onChange={(e: any) => setPassword2(e.target.value)}
+            required
+          />
           <Button type="submit">Submit</Button>
         </form>
 
         <div className="login__links">
-          <Link href="/register">Register</Link>
-          <Link href="/reset-password">Forgot Password?</Link>
+          <Link href="/login">Login</Link>
         </div>
       </div>
     </Layout>

@@ -6,27 +6,21 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 
-export default function Login() {
+export default function ResetPassword() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
+    await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${location.origin}/change-password`,
     });
-    if (error) {
-      return console.error(error);
-    }
-    location.replace('/');
   };
 
 
   return (
-    <Layout title="Login">
+    <Layout title="Reset Password">
       <div className="login">
-        <h1>Login</h1>
+        <h1>Reset Password</h1>
 
         <form onSubmit={(e) => handleSubmit(e)}>
           <Input
@@ -37,20 +31,11 @@ export default function Login() {
             onChange={(e: any) => setEmail(e.target.value)}
             required
           />
-          <Input
-            variant={['label-stack']}
-            label="Password"
-            type="password"
-            value={password}
-            onChange={(e: any) => setPassword(e.target.value)}
-            required
-          />
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Reset</Button>
         </form>
 
         <div className="login__links">
-          <Link href="/register">Register</Link>
-          <Link href="/reset-password">Forgot Password?</Link>
+          <Link href="/login">Login</Link>
         </div>
       </div>
     </Layout>

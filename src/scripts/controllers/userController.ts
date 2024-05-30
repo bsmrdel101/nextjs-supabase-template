@@ -9,6 +9,9 @@ interface UserLogin {
 // === GET routes === //
 
 export const getUser = async () => {
+  const res = await supabase.auth.getSession();
+  if (!res.data.session) return console.error('No user session');
+
   const { data, error } = await supabase.auth.getUser();
   if (error) return console.error(error);
 
@@ -17,20 +20,6 @@ export const getUser = async () => {
     email: data.user.email,
   };
   return userData;  
-};
-
-export const loginUser = async (user: UserLogin) => {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email: user.email,
-    password: user.password,
-  });
-  if (error) return console.error(error);
-
-  const userData: User = {
-    id: data.user.id,
-    email: data.user.email,
-  };
-  return userData;
 };
 
 // === POST routes === //
