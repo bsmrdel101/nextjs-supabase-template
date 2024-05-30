@@ -5,7 +5,6 @@ interface SelectHTML extends React.HTMLProps<HTMLSelectElement> {}
 
 
 type User = {
-  id: number
+  id: string
   email: string
-  password: string
 };

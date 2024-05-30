@@ -28,6 +28,7 @@ export default function Register() {
             type="email"
             value={email}
             onChange={(e: any) => setEmail(e.target.value)}
+            required
           />
           <Input
             variant={['label-stack']}
@@ -35,6 +36,7 @@ export default function Register() {
             type="password"
             value={password}
             onChange={(e: any) => setPassword(e.target.value)}
+            required
           />
           <Button type="submit">Submit</Button>
         </form>
