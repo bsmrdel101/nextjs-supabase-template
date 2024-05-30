@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function Pagination({ className = '', variant, data, setData, btnCount = 5, page = 1, pageSize, minData }: Props) {
-  const classes = generateClasses(className, variant, 'pagination');
+  const classes = generateClasses(`pagination ${className}`, variant, 'pagination');
   const [currentPage, setCurrentPage] = useState(page);
 
   useEffect(() => {

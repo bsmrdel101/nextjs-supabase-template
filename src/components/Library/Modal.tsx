@@ -19,7 +19,7 @@ interface Props {
 
 export default function Modal({ children, className, variant, title, closeOnOutsideClick, width, height, maxHeight, open, setOpen, onClose, ...props }: Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const classes = generateClasses(className, variant, 'modal');
+  const classes = generateClasses(`modal ${className}`, variant, 'modal');
 
   useEffect(() => {
     bindEventListeners();

@@ -2,7 +2,6 @@ import { generateClasses, parseClasses } from "@/scripts/tools/utils";
 
 interface Props extends InputHTML {
   children?: any
-  labelClass?: string
   className?: string
   variant?: ('thin' | 'small' | 'x-small' | 'search' | 'label-stack' | 'label-no-stack' | 'label-space-between' | 'md-text' | 'label-full-width' | 'label-bold' | 'text-area' | 'label-inline' | 'label-no-margin' | 'no-style')[]
   label?: string
@@ -10,14 +9,28 @@ interface Props extends InputHTML {
   rows?: number
 }
 
-export default function Input({ children, className = '', labelClass = '', variant, label, cols, rows, ...props }: Props) {
-  const labelClassList = variant.filter((v) => v.includes('label'));
+export default function Input({ children, className = '', variant, label, cols, rows, ...props }: Props) {
+  const labelClassList = ['label-stack', 'label-no-stack', 'label-space-between', 'label-full-width', 'label-bold'];
   const classes = generateClasses(className, variant ? variant.filter((v) => !labelClassList.includes(v)) : [], 'input');
-  const labelClasses = generateClasses(labelClass, labelClassList, 'input');
 
+  let labelClass = [];
+  if (variant) {
+    if (variant.includes('label-stack')) {
+      labelClass.push('input--label-stack');
+    }
+    if (variant.includes('label-space-between')) {
+      labelClass.push('input--label-space-between');
+    }
+    if (variant.includes('label-full-width')) {
+      labelClass.push('input--label-full-width');
+    }
+    if (variant.includes('label-bold')) {
+      labelClass.push('input--label-bold');
+    }
+  }
 
   return (
-    <label {...parseClasses(labelClasses)}>
+    <label className={labelClass.join(' ')}>
       { label }
 
       {variant && variant.includes('text-area') ?
