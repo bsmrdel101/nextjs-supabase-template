@@ -7,7 +7,7 @@ interface Props extends TableHTML {
 
 
 export default function Table({ children, className = '', variant, ...props }: Props) {
-  const classes = generateClasses(`table ${className}`, variant, 'table');
+  const classes = generateClasses(className, variant, 'table');
 
   return (
     <table

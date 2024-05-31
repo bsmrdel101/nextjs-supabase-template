@@ -30,6 +30,10 @@ button {
     width: 10rem;
   }
 
+  &--fit-content {
+    width: fit-content;
+  }
+
   &--search {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;

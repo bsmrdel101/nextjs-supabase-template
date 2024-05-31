@@ -1,7 +1,7 @@
 import { Layout } from "@/components/Layout";
 import Button from "@/components/Library/Button";
 import Input from "@/components/Library/Input";
-import { registerUser } from "@/scripts/controllers/userController";
+import { supabase } from "@/scripts/config/supabase";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
@@ -12,7 +12,14 @@ export default function Register() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    await registerUser({ email, password });
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        emailRedirectTo: window.location.origin,
+      },
+    });
+    if (error) return console.error(error);
   };
 
 

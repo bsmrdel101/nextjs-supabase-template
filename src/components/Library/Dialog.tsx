@@ -49,10 +49,9 @@ export default function Dialog({ children, className, variant, title, closeOnOut
 
   return (
     <Draggable handle=".dialog__handlebar" y={y} x={x}>
-      <dialog open={open} ref={ref} className="dialog" style={{ width: width, height: height }}>
+      <dialog open={open} ref={ref} {...parseClasses(classes)} style={{ width: width, height: height }}>
         <div className="dialog__handlebar draggable"></div>
         <div
-          {...parseClasses(classes)}
           {...props}
         >
           <h3 className="dialog__title">{ title }</h3>

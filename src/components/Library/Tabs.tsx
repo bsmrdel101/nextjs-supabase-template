@@ -10,7 +10,7 @@ interface Props {
 
 
 export default function Tabs({ children, className = '', variant, ...props }: Props) {
-  const classes = generateClasses(`tabs${className ? ` ${className}` : ''}`, variant, 'tabs');
+  const classes = generateClasses(className, variant, 'tabs');
   const tabLinks = children[0].props.children;
   const [activeTab, setActiveTab] = useState(1);
 

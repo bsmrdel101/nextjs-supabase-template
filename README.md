@@ -6,10 +6,25 @@
 
 ## Getting Started
 
+After creating the Supabase project with the link above:
+
+- Make sure Docker is running
 - `npm i`
+- `npm run db:init`
+    - Select yes for all prompts
+- `npm run db:login`
+- `npm run db:link`
+- Create a `.env.local` file and copy the env variables from `.env.local.sample`
+- `npm run db:start`
+    - Copy `service_role key` from terminal output to NEXT_PUBLIC_SUPABASE_KEY inside `.env.local`
+    - You can view the local db from the `Studio URL`
+- `npm run db:pull`
 - `npm run dev`
 - Open [http://localhost:3000](http://localhost:3000)
-- Create a `.env.local` file and fill in the env variables from `.env.local.sample`
+
+*If empty arrays are being returned from the database then you probably don't have RLS policies setup.*
+
+### Resend
 - Setup a custom SMTP email server [here](https://resend.com)
     - You can follow this tutorial [here](https://resend.com/blog/how-to-configure-supabase-to-send-emails-from-your-domain)
     - Configure the SMTP Provider data inside `Supabase > Project Settings > Authentication`
