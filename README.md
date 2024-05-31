@@ -13,12 +13,13 @@ After creating the Supabase project with the link above:
 - `npm run db:init`
     - Select yes for all prompts
 - `npm run db:login`
-- `npm run db:link`
+- `npx supabase link --project-ref YOUR_SUPABASE_REFERENCE_ID`
 - Create a `.env.local` file and copy the env variables from `.env.local.sample`
 - `npm run db:start`
     - Copy `service_role key` from terminal output to NEXT_PUBLIC_SUPABASE_KEY inside `.env.local`
     - You can view the local db from the `Studio URL`
 - `npm run db:pull`
+- `npm run db:reset-full`
 - `npm run dev`
 - Open [http://localhost:3000](http://localhost:3000)
 

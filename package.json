@@ -15,7 +15,9 @@
     "db:pull": "supabase db pull",
     "db:push": "supabase db push",
     "db:status": "supabase status",
-    "db:reset": "supabase db dump --data-only > supabase/seed.sql && supabase db reset"
+    "db:reset-full": "supabase db dump --data-only > supabase/seed.sql && supabase db reset",
+    "db:dump": "supabase db dump --data-only > supabase/seed.sql",
+    "db:reset": "supabase db reset"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.43.4",
