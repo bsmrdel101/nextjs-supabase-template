@@ -9,7 +9,7 @@
     "lint": "next lint",
     "db:init": "supabase init",
     "db:start": "supabase start",
-    "db:stop": "supabase stop",
+    "db:stop": "supabase stop --project-id nextjs-supabase-template",
     "db:link": "supabase link",
     "db:login": "supabase login",
     "db:pull": "supabase db pull",
